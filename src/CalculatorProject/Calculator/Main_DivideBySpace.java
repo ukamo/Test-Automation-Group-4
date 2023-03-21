@@ -7,8 +7,9 @@ import java.util.Scanner;
 
 public class Main_DivideBySpace {
     public static void main(String[] args) {
+        System.out.println("Программа принимает выражения с пробелом до и после арифметического знака,например, 1 + 2");
         while (true) {
-            System.out.print("Введите выражение: ");
+            System.out.print("Введите выражение:");
             Scanner input = new Scanner(System.in);
             String strFromUser = input.nextLine();
             String strWithoutTrim = strFromUser.trim();
