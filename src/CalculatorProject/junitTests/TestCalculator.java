@@ -1,7 +1,7 @@
-package homework_1.junitTests;
+package CalculatorProject.junitTests;
 
-import homework_1.api.CalculatorWithMath;
-import homework_1.api.ICalculator;
+import CalculatorProject.Calculator.CalculatorWithMath;
+import CalculatorProject.Calculator.ICalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;

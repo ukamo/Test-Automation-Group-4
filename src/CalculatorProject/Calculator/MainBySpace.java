@@ -1,4 +1,6 @@
-package homework_1.api;
+package CalculatorProject.Calculator;
+
+import CalculatorProject.draft.ScannerException;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -12,39 +14,28 @@ public class MainBySpace {
             String strWithoutTrim = strFromUser.trim();
             String pattern = " ";
             String sign;
-            //String pattern = "[*/+-]";
             String[] arrSplit = strWithoutTrim.split(pattern);
-           /*for (int i=0;i<arrSplit.length;i++){
-               if (arrSplit[i].equals("+") || arrSplit[i].equals("-") || arrSplit[i].equals("/")  || arrSplit[i].equals("*")){
-                   sign = arrSplit[i];
-               }
-           }
-           */
             CalculatorWithMath calcCopy = new CalculatorWithMath();
             try {
+                if (arrSplit.length > 3){
+                    throw new NumberFormatException();
+                }
                 double number1 = Double.parseDouble(arrSplit[0]);
                 sign = arrSplit[1];
                 double number2 = Double.parseDouble(arrSplit[2]);
-                Double rez;
-                switch (sign) {
-                    case "/":
-                        rez = calcCopy.divideTwoNumbers(number1, number2);
-                        break;
-                    case "+":
-                        rez = calcCopy.sumTwoNumbers(number1, number2);
-                        break;
-                    case "-":
-                        rez = calcCopy.subtractionTwoNumbers(number1, number2);
-                        break;
-                    case "*":
-                        rez = calcCopy.multipleTwoNumbers(number1, number2);
-                        break;
-                    default:
-                        throw new ScannerException(sign);
-                        //throw new IllegalStateException("Неверный знак " + sign);
-                }
+                double rez = switch (sign) {
+                    case "/" -> calcCopy.divideTwoNumbers(number1, number2);
+                    case "+" -> calcCopy.sumTwoNumbers(number1, number2);
+                    case "-" -> calcCopy.subtractionTwoNumbers(number1, number2);
+                    case "*" -> calcCopy.multipleTwoNumbers(number1, number2);
+                    default -> throw new ScannerException(sign);
+                };
                 if (!Double.isNaN(rez)) {
-                    System.out.println(rez);
+                    if (rez % 1 ==0){
+                        System.out.printf("%.0f", rez);
+                    } else {
+                        System.out.printf("%.3f", rez);
+                    }
                 }
                 break;
             } catch (InputMismatchException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
@@ -54,5 +45,7 @@ public class MainBySpace {
                 System.out.println("Пользователь ввел неверный знак");
             }
         }
+
+
     }
 }

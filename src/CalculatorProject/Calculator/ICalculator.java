@@ -1,4 +1,4 @@
-package homework_1.api;
+package CalculatorProject.Calculator;
 
 public interface ICalculator {
     //@Override
