@@ -5,7 +5,7 @@ import CalculatorProject.draft.ScannerException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MainBySpace {
+public class Main_DivideBySpace {
     public static void main(String[] args) {
         while (true) {
             System.out.print("Введите выражение: ");
@@ -17,7 +17,7 @@ public class MainBySpace {
             String[] arrSplit = strWithoutTrim.split(pattern);
             CalculatorWithMath calcCopy = new CalculatorWithMath();
             try {
-                if (arrSplit.length > 3){
+                if (arrSplit.length > 3) {
                     throw new NumberFormatException();
                 }
                 double number1 = Double.parseDouble(arrSplit[0]);
@@ -31,7 +31,7 @@ public class MainBySpace {
                     default -> throw new ScannerException(sign);
                 };
                 if (!Double.isNaN(rez)) {
-                    if (rez % 1 ==0){
+                    if (rez % 1 == 0) {
                         System.out.printf("%.0f", rez);
                     } else {
                         System.out.printf("%.3f", rez);
@@ -45,7 +45,5 @@ public class MainBySpace {
                 System.out.println("Пользователь ввел неверный знак");
             }
         }
-
-
     }
 }
