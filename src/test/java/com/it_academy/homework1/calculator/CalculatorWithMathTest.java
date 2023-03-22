@@ -1,12 +1,11 @@
-package CalculatorProject.junitTests;
+package com.it_academy.homework1.calculator;
 
-import CalculatorProject.Calculator.CalculatorWithMath;
-import CalculatorProject.Calculator.ICalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
-public class TestCalculator {
+class CalculatorWithMathTest {
+
     private ICalculator[] array1 = {new CalculatorWithMath()};
 
     @Test
@@ -60,7 +59,4 @@ public class TestCalculator {
             System.out.println(str7);
         }
     }
-
-    ;
-
 }

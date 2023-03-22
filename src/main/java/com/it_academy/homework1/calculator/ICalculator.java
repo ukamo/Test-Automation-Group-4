@@ -1,4 +1,4 @@
-package CalculatorProject.Calculator;
+package com.it_academy.homework1.calculator;
 
 public interface ICalculator {
 

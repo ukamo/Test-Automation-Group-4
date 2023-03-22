@@ -1,4 +1,4 @@
-package CalculatorProject.Calculator;
+package com.it_academy.homework1.calculator;
 
 public class CalculatorWithMath implements ICalculator {
     public double multipleTwoNumbers(double numberOne, double numberTwo) {

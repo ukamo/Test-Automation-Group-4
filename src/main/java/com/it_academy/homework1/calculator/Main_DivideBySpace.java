@@ -1,6 +1,6 @@
-package CalculatorProject.Calculator;
+package com.it_academy.homework1.calculator;
 
-import CalculatorProject.draft.ScannerException;
+import com.it_academy.homework1.draft.ScannerException;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -9,7 +9,7 @@ public class Main_DivideBySpace {
     public static void main(String[] args) {
         System.out.println("Программа принимает выражения с пробелом до и после арифметического знака,например, 1 + 2");
         while (true) {
-            System.out.print("Введите выражение:");
+            System.out.print("Введите выражение: ");
             Scanner input = new Scanner(System.in);
             String strFromUser = input.nextLine();
             String strWithoutTrim = strFromUser.trim();
