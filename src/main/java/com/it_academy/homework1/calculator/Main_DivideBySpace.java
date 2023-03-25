@@ -1,7 +1,5 @@
 package com.it_academy.homework1.calculator;
 
-import com.it_academy.homework1.draft.ScannerException;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
