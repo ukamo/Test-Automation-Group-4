@@ -1,76 +1,48 @@
 package com.it_academy.homework3.calculator;
 
-import com.it_academy.homework1.draft.ScannerException;
 
-public class CalculatorNew implements ICalculatorNew {
+import static com.it_academy.homework3.calculator.Constants.maxLength;
 
+public class CalculatorNew {
     public String[] changeStringFromArray (String stringFromUs){
         String strWithoutTrim = stringFromUs.trim();
         String pattern = " ";
         String[] arrSplit = strWithoutTrim.split(pattern);
+        if (arrSplit.length<maxLength.getConstants()|
+                arrSplit.length > maxLength.getConstants()){
+            throw new NumberFormatException();
+        }
         return arrSplit;
     }
 
-    public double parseDoubleString (String[] array, int numberOfArray){
-        double rezult = 0;
-        for(int i=0; i<array.length; i++ ) {
-            if(numberOfArray == i) {
-                rezult = Double.parseDouble(array[i]);
-            }
-        }
-        return rezult;
+    public double parseFromStringToDouble(String str){
+        return Double.parseDouble(str);
     }
 
-    public String viewRez (double rez){
-        String rezString = "";
-        if (!Double.isNaN(rez)) {
-            if (rez % 1 == 0) {
-                rezString = String.format("%.0f", rez);
-                //String.format("%.5g%n", 0.912385);
-                //private static DecimalFormat df2 = new DecimalFormat("#.00");
-            } else {
-                rezString = String.format("%.3f", rez);
-                //System.out.printf("%.3f", rez);
-            }
-
-        }
-        return rezString;
-    }
-    public String parseString (String[] array, int numberOfArray){
-        String rezult = "";
-        for(int i=0; i<array.length; i++ ) {
-            if(numberOfArray == i) {
-                rezult = array[i];
-            }
-        }
-        return rezult;
-    }
-
-    public double checkSign(String sign, double number1, double number2) throws ScannerException {
-        double rez = switch (sign) {
+    public double checkSign(String sign, double number1, double number2) {
+        return switch (sign) {
             case "/" -> divideTwoNumbers(number1, number2);
             case "+" -> sumTwoNumbers(number1, number2);
-            case "-" -> subtractionTwoNumbers(number1, number2);
-            case "*" -> multipleTwoNumbers(number1, number2);
-            default -> throw new ScannerException(sign);
+            case "-" -> subtractTwoNumbers(number1, number2);
+            case "*" -> multiplyTwoNumbers(number1, number2);
+            default -> throw new ScannerException("Invalid sign: " + sign);
         };
-       return rez;
     }
-    public double multipleTwoNumbers(double numberOne, double numberTwo) {
-        double rezMultipleTwoNumbers = numberOne * numberTwo;
-        if (rezMultipleTwoNumbers == -0.0) {
+    public double multiplyTwoNumbers(double numberOne, double numberTwo) {
+        double result = numberOne * numberTwo;
+        if (result == -0.0) {
             return 0.0;
         }
-        return rezMultipleTwoNumbers;
+        return result;
     }
 
     public double divideTwoNumbers(double numberOne, double numberTwo) {
         if (numberTwo != 0) {
-            double rezDivideTwoNumbers = numberOne / numberTwo;
-            if (rezDivideTwoNumbers == -0.0) {
+            double result = numberOne / numberTwo;
+            if (result == -0.0) {
                 return 0.0;
             }
-            return rezDivideTwoNumbers;
+            return result;
         } else {
             System.out.println("На 0 делить нельзя");
             return Double.NaN;
@@ -78,13 +50,22 @@ public class CalculatorNew implements ICalculatorNew {
     }
 
     public double sumTwoNumbers(double numberOne, double numberTwo) {
-        double rezSumTwoNumbers = numberOne + numberTwo;
-        return rezSumTwoNumbers;
+        return numberOne + numberTwo;
     }
 
-    public double subtractionTwoNumbers(double numberOne, double numberTwo) {
-        double rezSubtractionTwoNumbers = numberOne - numberTwo;
-        return rezSubtractionTwoNumbers;
+    public double subtractTwoNumbers(double numberOne, double numberTwo) {
+        return numberOne - numberTwo;
+    }
+    public String viewRez (double rez){
+        String resString = "";
+        if (!Double.isNaN(rez)) {
+            if (rez % 1 == 0) {
+                resString = String.format("%.0f", rez);
+            } else {
+                resString = String.format("%.3f", rez);
+            }
+        }
+        return resString;
     }
 
 }
