@@ -9,5 +9,4 @@
    Для написания тестов использовать JUnit5 или TestNG
 
 3. Для максимальной оценки добавить к работе сгенерированный html репорт с результатом выполнения тестов.
-
-[JUnit5Assertions Report.html](..%2F..%2F..%2F..%2F..%2F..%2Ftarget%2Fsite%2FJUnit5Assertions%20Report.html)
+[HTML репорт](JUnit5Assertions%20Report.html)
