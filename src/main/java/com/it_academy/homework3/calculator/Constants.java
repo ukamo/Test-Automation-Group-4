@@ -1,25 +1,16 @@
 package com.it_academy.homework3.calculator;
 
-public enum Constants {
+public interface Constants {
+
     /*Max Length of Array is 3 */
-    maxLength(3),
-    firstNumb(0),
-    sign(1),
-    seconNub(2);
+    int MAX_EXPRESSION_SIZE = 3;
 
+    //sign in Array
+    int MATH_SIGN_ARR_INDEX = 1;
 
-    private final int constants;
+    //left expression
+    int LEFT_OPERAND_ARR_INDEX = 0;
 
-    public int getConstants() {
-        return constants;
-    }
-
-    Constants(int constants) {
-        this.constants = constants;
-    }
-
-    public int getcConstants() {
-        return constants;
-    }
-
+    //right expression
+    int RIGHT_OPERAND_ARR_INDEX = 2;
 }

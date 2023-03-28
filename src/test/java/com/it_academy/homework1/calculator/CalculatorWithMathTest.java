@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
-class CalculatorWithMathTest {
+public class CalculatorWithMathTest {
 
     private ICalculator[] array1 = {new CalculatorWithMath()};
 

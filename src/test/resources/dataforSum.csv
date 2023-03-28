@@ -1,0 +1,6 @@
+numberOne,numberTwo,expected,description
+4,5,9,"""Sum two positive numbers"""
+-2.8,-2.789,-5.589,"""Sum negative decimal numbers"""
+340.5678,-6,334.5678,"""Sum positive decimal and negative number"""
+0,57890643219,57890643219,"""Sum 0 and positive number"""
+-123456789,0,-123456789,"""Sum negative number and 0 """

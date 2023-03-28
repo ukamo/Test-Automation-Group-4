@@ -1,21 +1,21 @@
 package com.it_academy.homework3.calculator;
 
 
-import static com.it_academy.homework3.calculator.Constants.maxLength;
+import static com.it_academy.homework3.calculator.Constants.MAX_EXPRESSION_SIZE;
 
 public class CalculatorNew {
-    public String[] changeStringFromArray (String stringFromUs){
+
+    public String[] changeStringFromArray(String stringFromUs) {
         String strWithoutTrim = stringFromUs.trim();
         String pattern = " ";
         String[] arrSplit = strWithoutTrim.split(pattern);
-        if (arrSplit.length<maxLength.getConstants()|
-                arrSplit.length > maxLength.getConstants()){
+        if (arrSplit.length < MAX_EXPRESSION_SIZE || arrSplit.length > MAX_EXPRESSION_SIZE) {
             throw new NumberFormatException();
         }
         return arrSplit;
     }
 
-    public double parseFromStringToDouble(String str){
+    public double parseFromStringToDouble(String str) {
         return Double.parseDouble(str);
     }
 
@@ -28,6 +28,7 @@ public class CalculatorNew {
             default -> throw new ScannerException("Invalid sign: " + sign);
         };
     }
+
     public double multiplyTwoNumbers(double numberOne, double numberTwo) {
         double result = numberOne * numberTwo;
         if (result == -0.0) {
@@ -56,16 +57,18 @@ public class CalculatorNew {
     public double subtractTwoNumbers(double numberOne, double numberTwo) {
         return numberOne - numberTwo;
     }
-    public String viewRez (double rez){
+
+    public String formatResult(double result) {
         String resString = "";
-        if (!Double.isNaN(rez)) {
-            if (rez % 1 == 0) {
-                resString = String.format("%.0f", rez);
+        if (!Double.isNaN(result)) {
+            if (result % 1 == 0) {
+                resString = String.format("%.0f", result);
             } else {
-                resString = String.format("%.3f", rez);
+                resString = String.format("%.3f", result);
             }
         }
         return resString;
     }
+
 
 }
