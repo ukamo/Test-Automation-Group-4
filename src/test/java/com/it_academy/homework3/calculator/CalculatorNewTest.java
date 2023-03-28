@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.*;
 
 import java.util.stream.Stream;
 
+import static java.lang.Double.NaN;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -135,12 +136,22 @@ class CalculatorNewTest {
     @Tag("Smoke")
     @CsvSource({"100,100,\"Number without decimal appears with dot  \"",
             "100.5, 100.500,\"Decimal number with 1 number after dot does Not appear with 3 numbers after dot",
-            "100.506788,100.507, \"Decimal number with 6 number after dot does Not appear with 3 numbers after dot and rounded "})
+            "100.506788,100.507, \"Decimal number with 6 number after dot does Not appear with 3 numbers after dot and rounded "
+            })
     @DisplayName("Отображение результатов - положительное число без знаков, дробное - с 3 знаками после точки")
     public void testFormatResult(double number, String result, String description) {
         assertThat(calculator.formatResult(number))
                 .withFailMessage(description)
                 .isEqualTo(result);
+    }
+
+    @Test
+    @Tag("Smoke")
+    @DisplayName("Отображение результатов - NaN после деления на 0")
+    public void testFormatResult() {
+        assertThat(calculator.formatResult(NaN))
+                .withFailMessage("NaN does not appear as empty string")
+                .isEqualTo("");
     }
 
 
@@ -172,7 +183,8 @@ class CalculatorNewTest {
     @ValueSource(strings = {" 3    + 4            "})
     @DisplayName("Исключения - размер строки (с делением на пробелы) больше 3 ")
     public void testThrowsSizeOfStringMore(String str) {
-        Assertions.assertThatThrownBy(() -> calculator.changeStringFromArray(str)).withFailMessage("Size of String is Not 3, should be throw - NumberFormatException")
+        Assertions.assertThatThrownBy(() -> calculator.changeStringFromArray(str))
+                .withFailMessage("Size of String is Not 3, should be throw - NumberFormatException")
                 .isInstanceOf(NumberFormatException.class);
     }
 
