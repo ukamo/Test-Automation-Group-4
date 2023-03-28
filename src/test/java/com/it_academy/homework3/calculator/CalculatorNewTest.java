@@ -149,12 +149,7 @@ class CalculatorNewTest {
     @CsvSource({"^, 1,2"})
     @DisplayName("Исключения - другой знак арифметической операции")
     public void testThrowsWithOtherSign(String sign, double firstNumber, double secondNumber) {
-        Assertions.assertThatThrownBy(new ThrowableAssert.ThrowingCallable() {
-                    @Override
-                    public void call() throws Throwable {
-                        calculator.checkSign(sign, firstNumber, secondNumber);
-                    }
-                }).withFailMessage("Other signs" + sign + "is invalid, ScannerException throw should be")
+        Assertions.assertThatThrownBy(() -> calculator.checkSign(sign, firstNumber, secondNumber)).withFailMessage("Other signs" + sign + "is invalid, ScannerException throw should be")
                 .isInstanceOf(ScannerException.class);
     }
 
@@ -177,12 +172,7 @@ class CalculatorNewTest {
     @ValueSource(strings = {" 3    + 4            "})
     @DisplayName("Исключения - размер строки (с делением на пробелы) больше 3 ")
     public void testThrowsSizeOfStringMore(String str) {
-        Assertions.assertThatThrownBy(new ThrowableAssert.ThrowingCallable() {
-                    @Override
-                    public void call() throws Throwable {
-                        calculator.changeStringFromArray(str);
-                    }
-                }).withFailMessage("Size of String is Not 3, should be throw - NumberFormatException")
+        Assertions.assertThatThrownBy(() -> calculator.changeStringFromArray(str)).withFailMessage("Size of String is Not 3, should be throw - NumberFormatException")
                 .isInstanceOf(NumberFormatException.class);
     }
 
