@@ -1,6 +1,8 @@
 package com.it_academy.homework3.calculator;
 
 
+import java.util.Locale;
+
 import static com.it_academy.homework3.calculator.Constants.MAX_EXPRESSION_SIZE;
 
 public class CalculatorNew {
@@ -62,9 +64,9 @@ public class CalculatorNew {
         String resString = "";
         if (!Double.isNaN(result)) {
             if (result % 1 == 0) {
-                resString = String.format("%.0f", result);
+                resString = String.format(Locale.US, "%.0f", result);
             } else {
-                resString = String.format("%.3f", result);
+                resString = String.format(Locale.US,"%.3f", result);
             }
         }
         return resString;
