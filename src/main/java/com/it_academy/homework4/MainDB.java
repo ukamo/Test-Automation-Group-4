@@ -18,7 +18,8 @@ public class MainDB {
         Connection connection = null;
         if (existDriver()) {
             connection = DriverManager.getConnection(SQL_URL);
-            addBalance(connection, AccountScanner.сhangeBalanceAccount(connection, true));
+            //addBalance(connection, AccountScanner.сhangeBalanceAccount(connection, true));
+            decreaseBalance(connection, AccountScanner.сhangeBalanceAccount(connection, false));
             /*
             String action;
             do {
