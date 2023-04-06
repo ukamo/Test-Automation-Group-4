@@ -18,6 +18,8 @@ public class MainDB {
         Connection connection = null;
         if (existDriver()) {
             connection = DriverManager.getConnection(SQL_URL);
+            addBalance(connection, AccountScanner.сhangeBalanceAccount(connection, true));
+            /*
             String action;
             do {
                 printMenu();
@@ -35,6 +37,8 @@ public class MainDB {
             }
             while (!"7".equals(action));
             connection.close();
+
+             */
         }
     }
     public static boolean existDriver()  {

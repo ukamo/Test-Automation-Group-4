@@ -1,5 +1,6 @@
 /.idea
 /src/CalculatorProject/draft/
-/src/CalculatorProject/draft/
 /src/main/java/com/it_academy/homework3/calculator/draft/
+/target
+/out
 /src/main/java/com/it_academy/othersMain/
