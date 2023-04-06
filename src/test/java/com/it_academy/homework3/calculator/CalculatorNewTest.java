@@ -1,16 +1,21 @@
 package com.it_academy.homework3.calculator;
 
-import org.assertj.core.api.Assertions;
 import org.assertj.core.api.ThrowableAssert;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
 import java.util.stream.Stream;
 
 import static java.lang.Double.NaN;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.params.provider.Arguments.of;
 
 class CalculatorNewTest {
     private CalculatorNew calculator;
@@ -22,15 +27,15 @@ class CalculatorNewTest {
 
     @ParameterizedTest
     //@Order(1)
-    @CsvSource({"3 + 4, 3,\"Size of string is not 3\" ",
-            " 2 + 5, 3,\"Size of string is not 3\" ",
-            "Test1 and Test3 ,3, \"Size of string is not 3\" ",
+    @CsvSource({"3 + 4, 3 ",
+            " 2 + 5, 3",
+            "Test1 and Test3 ,3 ",
     })
     @Tag("Smoke")
     @DisplayName("Изменяем строку в массив")
-    public void testChangeStringFromArray(String str, int expected, String description) {
+    public void testChangeStringFromArray(String str, int expected) {
         assertThat(calculator.changeStringFromArray(str))
-                .withFailMessage(description)
+                .withFailMessage("Size of string is not 3")
                 .hasSize(expected);
 
     }
@@ -48,15 +53,15 @@ class CalculatorNewTest {
     @ParameterizedTest
     //@Order(3)
     @Tag("Smoke")
-    @CsvSource({"+,3.00, 4.00, 7.00,\"Checking of sign - sum is not performed correctly\"",
-            "*,6.00, 4.00, 24.00,\"Checking of sign - multiplication is not performed correctly\"",
-            "-,33.00, 4.00, 29.00,\"Checking of sign - substraction is not performed correctly\"",
-            "/,50.00, 10.00, 5.00,\"Checking of sign - division is not performed correctly\"",})
+    @CsvSource({"+,3.00, 4.00, 7.00",
+            "*,6.00, 4.00, 24.00",
+            "-,33.00, 4.00, 29.00",
+            "/,50.00, 10.00, 5.00"})
 
     @DisplayName("Проверка арифметического знака")
-    public void testCheckSign(String sign, double numberOne, double numberTwo, double result, String description) throws ScannerException {
+    public void testCheckSign(String sign, double numberOne, double numberTwo, double result) throws ScannerException {
         assertThat(calculator.checkSign(sign, numberOne, numberTwo))
-                .withFailMessage(description)
+                .withFailMessage("Checking of sign - multiplication is not performed correctly")
                 .isEqualTo(result);
     }
 
@@ -65,25 +70,25 @@ class CalculatorNewTest {
     @Tag("Smoke")
     //@Order(3)
     @DisplayName("Умножение чисел")
-    @CsvSource({"4,5,20, \"Multiply two positive numbers is not performed correctly\"",
-            "-2.8,-2.789,7.8092, \"Multiplication negative decimal numbers is not performed correctly\"",
-            "340.5678,-6,-2043.4067999999997, \"Multiply positive decimal and negative number is not performed correctly\"",
-            "0, 57890643219.00,0.00,\"Multiply 0 and positive number is not performed correctly\"",
-            "0, -123456789.00, 0.00,\"Multiply negative number and 0 is not performed correctly\""
+    @CsvSource({"4,5,20",
+            "-2.8,-2.789,7.8092",
+            "340.5678,-6,-2043.4067999999997",
+            "0, 57890643219.00,0.00",
+            "0, -123456789.00, 0.00"
     })
-    public void testMultiplyTwoNumbers(double numberOne, double numberTwo, double expected, String description) {
+    public void testMultiplyTwoNumbers(double numberOne, double numberTwo, double expected) {
         assertThat(calculator.multiplyTwoNumbers(numberOne, numberTwo)).
-                withFailMessage(description).isEqualTo(expected);
+                withFailMessage("Multiply two positive numbers is not performed correctly").isEqualTo(expected);
     }
 
 
     private static Stream<Arguments> testDivide() {
         return Stream.of(
-                Arguments.of(100.00, 5.00, 20.0, "A positive higher number is divided by a positive lower number incorrectly"),
-                Arguments.of(10.305, 50, 0.2061, "Positive smaller decimal number is divided by a larger decimal number incorrectly"),
-                Arguments.of(-2346, -567, 4.137566137566138, "Negative larger number is divided by a negative smaller number incorrectly"),
-                Arguments.of(-1987.352, 789564, -0.0025170245857207268, "Negative smaller decimal number divide the negative larger number incorrectly"),
-                Arguments.of(0, -12345.6789, 0, "0 is divided by a negative decimal number incorrectly")
+                of(100.00, 5.00, 20.0, "A positive higher number is divided by a positive lower number incorrectly"),
+                of(10.305, 50, 0.2061, "Positive smaller decimal number is divided by a larger decimal number incorrectly"),
+                of(-2346, -567, 4.137566137566138, "Negative larger number is divided by a negative smaller number incorrectly"),
+                of(-1987.352, 789564, -0.0025170245857207268, "Negative smaller decimal number divide the negative larger number incorrectly"),
+                of(0, -12345.6789, 0, "0 is divided by a negative decimal number incorrectly")
         );
     }
 
@@ -104,7 +109,7 @@ class CalculatorNewTest {
     @Tag("Smoke")
     @DisplayName("Деление числа на 0")
     public void testDivideNumberOnZero(double numberOne, double numberTwo) {
-        assertThat(calculator.divideTwoNumbers(numberOne, numberTwo)).isNaN();
+        assertThat(calculator.divideTwoNumbers(numberOne, numberTwo)).withFailMessage("Positive number is divided by O incorrectly").isNaN();
     }
 
     @ParameterizedTest
@@ -160,7 +165,7 @@ class CalculatorNewTest {
     @CsvSource({"^, 1,2"})
     @DisplayName("Исключения - другой знак арифметической операции")
     public void testThrowsWithOtherSign(String sign, double firstNumber, double secondNumber) {
-        Assertions.assertThatThrownBy(() -> calculator.checkSign(sign, firstNumber, secondNumber)).withFailMessage("Other signs" + sign + "is invalid, ScannerException throw should be")
+        assertThatThrownBy(() -> calculator.checkSign(sign, firstNumber, secondNumber)).withFailMessage("Other signs" + sign + "is invalid, ScannerException throw should be")
                 .isInstanceOf(ScannerException.class);
     }
 
@@ -169,7 +174,7 @@ class CalculatorNewTest {
     @ValueSource(strings = {"3,5"})
     @DisplayName("Исключения - дробное число с запятой")
     public void testThrowsDecimalNumberWithoutDot(String str) {
-        Assertions.assertThatThrownBy(new ThrowableAssert.ThrowingCallable() {
+        assertThatThrownBy(new ThrowableAssert.ThrowingCallable() {
                     @Override
                     public void call() throws Throwable {
                         calculator.parseFromStringToDouble(str);
@@ -183,7 +188,7 @@ class CalculatorNewTest {
     @ValueSource(strings = {" 3    + 4            "})
     @DisplayName("Исключения - размер строки (с делением на пробелы) больше 3 ")
     public void testThrowsSizeOfStringMore(String str) {
-        Assertions.assertThatThrownBy(() -> calculator.changeStringFromArray(str))
+        assertThatThrownBy(() -> calculator.changeStringFromArray(str))
                 .withFailMessage("Size of String is Not 3, should be throw - NumberFormatException")
                 .isInstanceOf(NumberFormatException.class);
     }
