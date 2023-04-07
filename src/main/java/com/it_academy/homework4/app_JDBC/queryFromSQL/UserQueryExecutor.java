@@ -6,9 +6,11 @@ import java.sql.*;
 
 public class UserQueryExecutor {
     private final Connection connection;
+
     public UserQueryExecutor(Connection connection) {
         this.connection = connection;
     }
+
     public boolean isUserHasUserId(int idFromScanner) {
         try {
             Statement statement = connection.createStatement();

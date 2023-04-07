@@ -47,7 +47,7 @@ public class Menu {
         System.out.println("7 - выход из программы");
     }
 
-    public static boolean existDriver()  {
+    public static boolean existDriver() {
         try {
             Class.forName("org.sqlite.JDBC");
             return true;

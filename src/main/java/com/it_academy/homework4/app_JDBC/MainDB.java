@@ -10,7 +10,7 @@ public class MainDB {
     private static final String SQL_URL =
             "jdbc:sqlite:" + System.getProperty("user.dir") + "\\src\\main\\myResources\\DBJM.db";
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         if (existDriver()) {
             try {
                 Connection connection = DriverManager.getConnection(SQL_URL);

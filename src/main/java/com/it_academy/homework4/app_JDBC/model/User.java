@@ -23,6 +23,7 @@ public class User {
         this.name = name;
         return name;
     }
+
     public String getAddress() {
         return address;
     }

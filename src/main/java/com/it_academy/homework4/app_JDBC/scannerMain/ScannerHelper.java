@@ -1,4 +1,5 @@
 package com.it_academy.homework4.app_JDBC.scannerMain;
+
 import com.it_academy.homework4.app_JDBC.queryFromSQL.UserQueryExecutor;
 
 import java.sql.Connection;
@@ -12,12 +13,13 @@ public class ScannerHelper {
     public ScannerHelper(Connection connection) {
         this.checkUser = new UserQueryExecutor(connection);
     }
-    public String scanNewUser(){
+
+    public String scanNewUser() {
         while (true) {
             System.out.println("Введите имя юзера: ");
             String nextLine = new Scanner(System.in).nextLine();
             if (!Objects.equals(nextLine, "")) {
-               return nextLine;
+                return nextLine;
             } else {
                 System.out.println("Hеобходимо заполнить поле Имя");
             }
@@ -31,7 +33,7 @@ public class ScannerHelper {
             try {
                 Scanner input = new Scanner(System.in);
                 int idFromScanner = input.nextInt();
-               if (checkUser.isUserHasUserId(idFromScanner)) {
+                if (checkUser.isUserHasUserId(idFromScanner)) {
                     return idFromScanner;
                 } else {
                     System.out.println("Hеобходимо корректно заполнить Id существующего юзера");
@@ -42,12 +44,13 @@ public class ScannerHelper {
 
         }
     }
+
     public int scanBalance() {
         while (true) {
             System.out.println("Введите cумму: ");
             try {
                 int amount = new Scanner(System.in).nextInt();
-                if (amount < 0 || amount >= 100000000  ) {
+                if (amount < 0 || amount >= 100000000) {
                     System.out.println("Введенная Вами сумма некорректная. Попробуйте еще раз.");
                 } else {
                     return amount;
@@ -57,6 +60,7 @@ public class ScannerHelper {
             }
         }
     }
+
     public String scanNewCurrency(int userId) {
         while (true) {
             System.out.println("Введите валюту: ");
@@ -69,6 +73,7 @@ public class ScannerHelper {
             }
         }
     }
+
     public String scanExistCurrency(int userId) {
         while (true) {
             System.out.println("Введите валюту: ");
@@ -81,6 +86,7 @@ public class ScannerHelper {
             }
         }
     }
+
     public static boolean checkBalanceLimits(int balance) {
         return balance >= 0 && balance < 2000000000;
     }
