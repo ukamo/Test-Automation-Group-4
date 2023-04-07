@@ -1,4 +1,4 @@
-package com.it_academy.homework4.model;
+package com.it_academy.homework4.app_JDBC.model;
 
 public class Transaction {
     private int accountId;

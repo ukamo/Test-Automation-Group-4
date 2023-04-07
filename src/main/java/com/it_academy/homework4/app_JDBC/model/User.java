@@ -1,4 +1,4 @@
-package com.it_academy.homework4.model;
+package com.it_academy.homework4.app_JDBC.model;
 
 import java.util.Objects;
 
@@ -23,7 +23,6 @@ public class User {
         this.name = name;
         return name;
     }
-
     public String getAddress() {
         return address;
     }
